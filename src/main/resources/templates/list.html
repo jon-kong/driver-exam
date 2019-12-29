@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+    <head>
+        <title>Question List</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="row">
+            <div class="col-xs-8 col-md-8">
+                <h3>
+                    <a href="/create" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> 新增试题</a>
+                </h3>
+                <h2>试题列表</h2>
+                <div class="table-responsive">
+                    <table class="table" id="question-table">
+                        <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>试题</th>
+                                <th>试题选项</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="question : ${questions}">
+                                <td><a th:text="${{question.no}}" th:href="@{'/show/' + ${question.id}}"></a></td>
+                                <td th:text="${question.topic}"></td>
+                                <td>
+                                    <div th:each="option:${question.options}">
+                                        <label th:text="${option.no + '. ' + option.name}"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

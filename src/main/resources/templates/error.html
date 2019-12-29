@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="cn"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+    <title>出错啦！</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+<div id="errorpage">
+    <div class="tfans_error">
+        <div class="logo"></div>
+        <div class="errortans clearfix">
+            <div class="e404"></div>
+            <p><b>出错啦！</b></p>
+            <div th:text="${resources}"></div>
+            <p><b></b></p>
+            <p><b>${data}</b></p>
+            <div class="bt" ><a th:href="@{/}">返回首页</a></div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

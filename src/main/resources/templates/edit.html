@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+    <head>
+        <title>Edit Queston</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <script type="text/javascript" th:src="@{/js/create.js}"></script>
+    </head>
+    <body>
+        <div layout:fragment="content" class="row">
+            <div class="col-xs-8 col-md-8">
+                <h3>
+                    <a href="/list" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> 试题列表</a>
+                </h3>
+                <h2>修改试题</h2>
+                <form action="/update">
+                    <div class="form-group">
+                        <label>问题:</label>
+                        <textarea class="form-control" name="topic" cols="60" rows="3" th:text="${question.topic}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>选项:</label>
+<!--                        <button type="button" class="button btn-light" id="add-btn" th:onclick="'createModule.addDiv()'"> +添加选项</button>-->
+                    </div>
+                    <div id="options" class="form-group list">
+                        <div class="form-inline" th:id="${'option' + optionStat.index}" th:each="option : ${question.options}">
+                            <label class="custom-control-label col-xs-2" th:text="${'选项:' + optionStat.count }"></label>
+                            <textarea class="form-control" th:name="${'options[' + optionStat.index + '].name'}" th:text="${option.name}" cols="60" rows="2"></textarea>
+                            <input type="checkbox" class="form-control" th:name="${'options[' + optionStat.index + '].isAnswer'}" th:checked="${option.isAnswer==null?0:option.isAnswer}" value="1"/><label>正确选项</label>
+<!--                            <button type="button" class="button btn-light" th:onclick="'createModule.delDiv(' + ${optionStat.index} + ')'"> -删除选项</button>-->
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" th:value="${question.id}" />
+                    <button type="submit" class="btn btn-success">Save</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

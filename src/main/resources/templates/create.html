@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="cn"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="default">
+<head>
+    <title>Create question</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" th:src="@{/js/create.js}"></script>
+</head>
+<body>
+<div layout:fragment="content" class="row">
+    <div class="col-xs-8 col-md-8">
+        <h3>
+            <a href="/list" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> question</a>
+        </h3>
+        <h2>新增试题</h2>
+        <form action="/save">
+            <div class="form-group">
+                <label>问题:</label>
+                <textarea class="form-control" name="topic" cols="60" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>选项:</label>
+                <button type="button" class="button btn-light" id="add-btn" th:onclick="'createModule.addDiv()'"> +添加选项</button>
+            </div>
+            <div id="options" class="form-group list">
+            </div>
+            <div class="form-inline">
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
