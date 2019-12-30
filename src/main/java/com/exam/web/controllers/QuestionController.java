@@ -55,8 +55,9 @@ public class QuestionController {
             throw new InvalidParameterException("参数不能为空");
         }
         question.assertParam();
-
-        question.setId(UUID.randomUUID().toString());
+        if(StringUtils.isEmptyOrWhitespace(question.getId())){
+            question.setId(UUID.randomUUID().toString());
+        }
         for(int i = 0;i < question.getOptions().size(); i++){
             Option option = question.getOptions().get(i);
 
@@ -68,7 +69,6 @@ public class QuestionController {
         if(StringUtils.isEmptyOrWhitespace(question.getAnswer())){
             throw new InvalidParameterException("请至少选择一个正确答案");
         }
-
         questionRepository.save(question);
 
         return "redirect:/show/" + question.getId();
@@ -98,32 +98,6 @@ public class QuestionController {
     
     @RequestMapping("/update")
     public String update(Question question) {
-        if(question == null || StringUtils.isEmptyOrWhitespace(question.getId())){
-            throw new InvalidParameterException("参数不能为空");
-        }
-        question.assertParam();
-
-        if(question == null){
-            return null;
-        }
-
-        for(int i = 0;i < question.getOptions().size(); i++){
-            Option option = question.getOptions().get(i);
-
-            option.setId(UUID.randomUUID().toString());
-            option.setNo(symbol[i]);
-        }
-        question.setAnswer(question.getOptions().stream().filter(x -> x.getIsAnswer() != null && x.getIsAnswer() == 1).map(x -> x.getNo()).collect(Collectors.joining(",")));
-
-        if(StringUtils.isEmptyOrWhitespace(question.getAnswer())){
-            throw new InvalidParameterException("请至少选择一个正确答案");
-        }
-        questionRepository.delete(question.getId());
-
-
-        question.setId(UUID.randomUUID().toString());
-        questionRepository.save(question);
-
-        return "redirect:/show/" + question.getId();
+        return save(question);
     }
 }

@@ -28,7 +28,7 @@
                         <div class="form-inline" th:id="${'option' + optionStat.index}" th:each="option : ${question.options}">
                             <label class="custom-control-label col-xs-2" th:text="${'选项:' + optionStat.count }"></label>
                             <textarea class="form-control" th:name="${'options[' + optionStat.index + '].name'}" th:text="${option.name}" cols="60" rows="2"></textarea>
-                            <input type="checkbox" class="form-control" th:name="${'options[' + optionStat.index + '].isAnswer'}" th:checked="${option.isAnswer==null?0:option.isAnswer}" value="1"/><label>正确选项</label>
+                            <input type="checkbox" class="form-control" th:name="${'options[' + optionStat.index + '].isAnswer'}" th:checked="${option.isAnswer}" value="1"/><label>正确选项</label>
 <!--                            <button type="button" class="button btn-light" th:onclick="'createModule.delDiv(' + ${optionStat.index} + ')'"> -删除选项</button>-->
                         </div>
                     </div>
