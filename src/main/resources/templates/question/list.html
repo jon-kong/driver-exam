@@ -4,13 +4,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="default">
     <head>
-        <title>Question List</title>
+<!--        <title>试题列表</title>-->
     </head>
     <body>
         <div layout:fragment="content" class="row">
             <div class="col-xs-8 col-md-8">
                 <h3>
-                    <a href="/create" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> 新增试题</a>
+                    <a href="/question/create" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> 新增试题</a>
                 </h3>
                 <h2>试题列表</h2>
                 <div class="table-responsive">
@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="question : ${questions}">
-                                <td><a th:text="${{question.no}}" th:href="@{'/show/' + ${question.id}}"></a></td>
+                                <td><a th:text="${question.no}" th:href="@{'/question/show/' + ${question.id}}"></a></td>
                                 <td th:text="${question.topic}"></td>
                                 <td>
                                     <div th:each="option:${question.options}">

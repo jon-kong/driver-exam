@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="default">
     <head>
-        <title>Edit Queston</title>
+<!--        <title>Edit Queston</title>-->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <script type="text/javascript" th:src="@{/js/create.js}"></script>
     </head>
@@ -12,13 +12,17 @@
         <div layout:fragment="content" class="row">
             <div class="col-xs-8 col-md-8">
                 <h3>
-                    <a href="/list" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> 试题列表</a>
+                    <a href="/question/list" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> 试题列表</a>
                 </h3>
                 <h2>修改试题</h2>
-                <form action="/update">
+                <form action="/question/update" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>问题:</label>
                         <textarea class="form-control" name="topic" cols="60" rows="3" th:text="${question.topic}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>图片:</label>
+                        <input type="file" name="file" id="file"/>
                     </div>
                     <div class="form-group">
                         <label>选项:</label>
@@ -31,6 +35,10 @@
                             <input type="checkbox" class="form-control" th:name="${'options[' + optionStat.index + '].isAnswer'}" th:checked="${option.isAnswer}" value="1"/><label>正确选项</label>
 <!--                            <button type="button" class="button btn-light" th:onclick="'createModule.delDiv(' + ${optionStat.index} + ')'"> -删除选项</button>-->
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label>答案解析:</label>
+                        <textarea class="form-control" name="analysis" cols="60" rows="5"></textarea>
                     </div>
                     <input type="hidden" name="id" th:value="${question.id}" />
                     <button type="submit" class="btn btn-success">Save</button>

@@ -4,7 +4,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="default">
 <head>
-    <title>Create question</title>
+<!--    <title>考试管理系统</title>-->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <script type="text/javascript" th:src="@{/js/create.js}"></script>
 </head>
@@ -12,19 +12,26 @@
 <div layout:fragment="content" class="row">
     <div class="col-xs-8 col-md-8">
         <h3>
-            <a href="/list" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> question</a>
+            <a href="/question/list" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list"></span> 返回试题列表</a>
         </h3>
         <h2>新增试题</h2>
-        <form action="/save">
+        <form action="/question/save" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label>问题:</label>
                 <textarea class="form-control" name="topic" cols="60" rows="3"></textarea>
             </div>
             <div class="form-group">
+                <label>图片:</label>
+                <input type="file" name="file" id="file"/>
+            </div>
+            <div class="form-group">
                 <label>选项:</label>
                 <button type="button" class="button btn-light" id="add-btn" th:onclick="'createModule.addDiv()'"> +添加选项</button>
             </div>
-            <div id="options" class="form-group list">
+            <div id="options" class="form-group list"></div>
+            <div class="form-group">
+                <label>答案解析:</label>
+                <textarea class="form-control" name="analysis" cols="60" rows="5"></textarea>
             </div>
             <div class="form-inline">
                 <button type="submit" class="btn btn-success">Save</button>

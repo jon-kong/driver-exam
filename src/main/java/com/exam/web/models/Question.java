@@ -14,7 +14,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 
 /**
- *问题
+ *考试题目
  */
 @Document(collection = "questions")
 public class Question {
@@ -25,6 +25,8 @@ public class Question {
     String topic;
     String answer;
     List<Option> options;
+    String pic;
+    String analysis;
 
     public void assertParam(){
         if(StringUtils.isEmptyOrWhitespace(topic) || CollectionUtils.isEmpty(options)){
@@ -74,5 +76,21 @@ public class Question {
 
     public void setOptions(List<Option> options) {
         this.options = options;
+    }
+
+    public String getAnalysis() {
+        return analysis;
+    }
+
+    public void setAnalysis(String analysis) {
+        this.analysis = analysis;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }

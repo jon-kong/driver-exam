@@ -13,9 +13,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author didin
  */
 public interface QuestionRepository extends CrudRepository<Question, String> {
-    @Override
-    Question findOne(String id);
-    
-    @Override
-    void delete(Question deleted);
+
 }
